@@ -2,21 +2,75 @@
 <html>
 
 <head>
-    <title>Insurance Plan</title>
+<title>Insurance Plan</title>
 
-    <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="toggleswitch_style.css">
+
+<style>
+body {
+    /* background-color: #f8fffe; */
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+#healthIcon {
+    position: absolute;
+    left: 8.36%;
+    height: 50.0%;
+    width: 45.09%;
+    top: 20.5%;
+}
+
+#thingsIcon {
+    position: absolute;
+    width: 40.09%;
+    height: 50.0%;
+    background-image: none;
+    background-color: transparent;
+    left: 49.45%;
+    top: 20.5%;    
+}
+
+#healthPlanText {
+    position: absolute;
+    text-align: center;
+    font-family: Arial;
+    left: 8.36%;
+    width: 45.09%;
+    height: 6.75%;
+    top: 71.25%;
+    border-style: none;
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(255, 204, 128);
+    font-size: 24pt;
+}
+
+#thingsPlanText {
+    position: absolute;
+    text-align: center;
+    font-family: Arial;
+    width: 40.09%;
+    left: 49.45%;
+    top: 71.25%;
+    font-style: italic;
+    color: rgb(255, 204, 128);
+    height: 6.75%;
+    font-size: 24pt;
+}
+
+</style>
 </head>
 
 <body>
 
-    <button>Health insurance</button>
-    <button>Things insurance</button>
+    <img id="healthIcon" alt="health_icon" src="icons/health_insurance_icon.svg">
+    <img id="thingsIcon" alt="things_icon" src="icons/things_insurance_icon.svg">
 
-    <!-- <img class="gwd-img-1hhe" id="health" alt="health_icon" src="/icons/health_insurance_icon.svg" width="100" height="100"> -->
-    <!-- <img class="gwd-img-9h3s" id="things" alt="things_icon" src="/icons/things_insurance_icon.svg" width="100" height="100"> -->
-
-    <h2 class="gwd-p-ax3k gwd-h2-19uf">Health insurance</h2>
-    <h2 class="gwd-p-5abg">Insurance of things</h2>
+    <h2 id="healthPlanText">Health insurance</h2>
+    <h2 id="thingsPlanText">Insurance of things</h2>
 
     <h2>Base options</h2>
 
@@ -70,6 +124,11 @@
 
     <button>Back</button>
     <button>Finish</button>
+
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+    </label>
 
 
 </body>
