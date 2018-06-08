@@ -3,7 +3,7 @@
 
 <head>
 <title>Insurance Plan</title>
-
+<script src="tools.js"></script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="toggleswitch_style.css">
 
@@ -15,32 +15,8 @@ body {
     margin: 0px;
 }
 
-#healthIcon {
-    position: absolute;
-    left: 8.36%;
-    height: 50.0%;
-    width: 45.09%;
-    top: 20.5%;
-}
-
-#thingsIcon {
-    position: absolute;
-    width: 40.09%;
-    height: 50.0%;
-    background-image: none;
-    background-color: transparent;
-    left: 49.45%;
-    top: 20.5%;    
-}
-
 h2 {
-    position: absolute;
-    text-align: center;
     font-family: Arial;
-    top: 20%;
-    left: 50%;
-    right: 50%;
-    margin: 0%;
     border-style: none;
     font-style: italic;
     font-weight: bold;
@@ -48,14 +24,25 @@ h2 {
     font-size: 24pt;
 }
 
+.center {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+/*     border: 3px solid #73AD21; */
+/*     padding: 10px; */
+}
+
 </style>
 </head>
 
 <body>
-
+    <div class="center">
     <h2>Base options</h2>
+    </div>
 
-    <table>
+    <p id="options"></p>
+
+<!--     <table>
         <tr>
             <th>Name</th>
             <th>Description</th>
@@ -81,7 +68,7 @@ h2 {
             </td>
         </tr>
 
-    </table>
+    </table> -->
 
     <button>Back</button>
     <button>Next</button>
@@ -110,7 +97,6 @@ h2 {
         <input type="checkbox">
         <span class="slider round"></span>
     </label>
-
 
 </body>
 

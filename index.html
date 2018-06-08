@@ -20,7 +20,7 @@ body {
     transition: 100ms;
 }
 
-#healthIcon {
+#health {
     position: absolute;
     left: 8.36%;
     height: 50.0%;
@@ -28,7 +28,7 @@ body {
     top: 20.5%;
 }
 
-#thingsIcon {
+#property {
     position: absolute;
     width: 40.09%;
     height: 50.0%;
@@ -69,25 +69,26 @@ body {
 </style>
 
 <script type="text/javascript">
-    healthClick = function() {
-        localStorage.setItem("core","health");
-        console.log("Health selected");
+    buttonClick = function(obj) {
+        localStorage.setItem("core",obj.id);
         window.open("base.html", "_self");
     }
-    propertyClick = function() {
-        localStorage.setItem("core","property");
-        console.log("Property selected");
-        window.open("additional.html", "_self");
-        
-    }
+//     document.onreadystatechange = function () {
+//         if (document.readyState === "complete") {
+//             var core = localStorage.getItem("core");
+//             if(core == "health" || core == "property" ) {
+//                 window.open("base.html", "_self");
+//             }
+//         }
+//     }
 </script>
 
 </head>
 
 <body>
     
-    <img class="icon" id="healthIcon" alt="health_icon" src="icons/health_insurance_icon.svg" onclick="healthClick()">
-    <img class="icon" id="thingsIcon" alt="things_icon" src="icons/things_insurance_icon.svg" onclick="propertyClick()">
+    <img class="icon" id="health" alt="health_icon" src="icons/health_insurance_icon.svg" onclick="buttonClick(this)">
+    <img class="icon" id="property" alt="things_icon" src="icons/things_insurance_icon.svg" onclick="buttonClick(this)">
 
     <h2 id="healthPlanText">Health insurance</h2>
     <h2 id="thingsPlanText">Insurance of things</h2>
