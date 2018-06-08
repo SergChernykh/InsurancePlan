@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>Insurance Plan</title>
+<title>Additional options</title>
 
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="toggleswitch_style.css">
@@ -19,6 +19,7 @@ body {
     transform: scale(0.95);
     transition: 100ms;
 }
+
 
 #healthIcon {
     position: absolute;
@@ -66,31 +67,50 @@ body {
     font-size: 24pt;
 }
 
+#button {
+    width: 6em;
+    border: 2px solid green;
+    background: #ffe;
+    border-radius: 5px;
+}
+a {
+    display: block;
+    width: 100%;
+    line-height: 2em;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+a:hover {
+    color: red;
+    background: #eff;
+}
+
 </style>
 
 <script type="text/javascript">
-    healthClick = function() {
-        localStorage.setItem("core","health");
-        console.log("Health selected");
-        window.open("base.html", "_self");
+    document.onreadystatechange = function () {
+        if (document.readyState === "complete") {
+            var core = localStorage.getItem("core");
+            console.log("Selected core:", core);
+        }
     }
-    propertyClick = function() {
-        localStorage.setItem("core","property");
-        console.log("Property selected");
-        window.open("additional.html", "_self");
-        
+
+    function loadXMLDoc(path,callback) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                callback(this);
+            }
+        };
+        xmlhttp.open("GET", path, true);
+        xmlhttp.send();
     }
 </script>
 
-</head>
-
 <body>
     
-    <img class="icon" id="healthIcon" alt="health_icon" src="icons/health_insurance_icon.svg" onclick="healthClick()">
-    <img class="icon" id="thingsIcon" alt="things_icon" src="icons/things_insurance_icon.svg" onclick="propertyClick()">
 
-    <h2 id="healthPlanText">Health insurance</h2>
-    <h2 id="thingsPlanText">Insurance of things</h2>
 
 </body>
 
