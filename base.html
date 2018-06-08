@@ -15,12 +15,6 @@ body {
     margin: 0px;
 }
 
-.icon:active {
-    transform: scale(0.95);
-    transition: 100ms;
-}
-
-
 #healthIcon {
     position: absolute;
     left: 8.36%;
@@ -67,42 +61,69 @@ body {
     font-size: 24pt;
 }
 
-#button {
-    width: 6em;
-    border: 2px solid green;
-    background: #ffe;
-    border-radius: 5px;
-}
-a {
-    display: block;
-    width: 100%;
-    line-height: 2em;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-}
-a:hover {
-    color: red;
-    background: #eff;
-}
-
 </style>
-
-<script type="text/javascript">
-    imageClick = function() {
-        window.open("base.html", "_self");
-    }
-</script>
-
 </head>
 
 <body>
-    
-    <img class="icon" id="healthIcon" alt="health_icon" src="icons/health_insurance_icon.svg" onclick="imageClick()">
-    <img class="icon" id="thingsIcon" alt="things_icon" src="icons/things_insurance_icon.svg" onclick="imageClick()">
 
-    <h2 id="healthPlanText">Health insurance</h2>
-    <h2 id="thingsPlanText">Insurance of things</h2>
+    <h2>Base options</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Cost</th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <td>Name1</td>
+            <td>Description1</td>
+            <td>Cost1</td>
+            <td>
+                <button>On/Off</button>
+            </td>
+            </tr>
+
+        <tr>
+            <td>Name1</td>
+            <td>Description1</td>
+            <td>Cost1</td>
+            <td>
+                <button>On/Off</button>
+            </td>
+        </tr>
+
+    </table>
+
+    <button>Back</button>
+    <button>Next</button>
+    <button>Add options</button>
+
+    <h2>Additions options</h2>
+
+    <ul>
+        <li>Option1</li>
+        <li>Option2</li>
+        <li>Option3</li>
+        <li>Option4</li>
+        <li>Option5</li>
+    </ul>
+
+    <button>Back</button>
+    <button>Next</button>
+
+    <h2>Summary</h2>
+
+
+    <button>Back</button>
+    <button>Finish</button>
+
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+    </label>
+
 
 </body>
 
