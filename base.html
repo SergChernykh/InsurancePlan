@@ -3,6 +3,7 @@
 
 <head>
 <title>Insurance Plan</title>
+<script src="data.js"></script>
 <script src="tools.js"></script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="toggleswitch_style.css">
@@ -33,6 +34,16 @@ h2 {
 }
 
 </style>
+
+<script>
+    document.onreadystatechange = function() {
+        if (document.readyState == "complete") {
+            var core = localStorage.getItem("core");
+            loadBaseTable("options", core);
+        }
+    }
+</script>
+
 </head>
 
 <body>
