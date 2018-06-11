@@ -3,7 +3,7 @@ var data = {
         "base": [
             {
                 "name": "base1",
-                "desc": "base desc ",
+                "desc": "base desc fjslfj jsfl jslf jslf jslfj lsjf sljf lsjflsj jslf jsj sj flsjf lsjf sj ljs jslfj slj flsfj ",
                 "cost": 100
             },
             {

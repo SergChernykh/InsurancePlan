@@ -8,16 +8,6 @@
 <link rel="stylesheet" href="toggleswitch_style.css">
 
 <style>
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-}
-
-.icon:active {
-    transform: scale(0.95);
-    transition: 100ms;
-}
 
 #health {
     position: absolute;
@@ -55,13 +45,6 @@ body {
 
 </style>
 
-<script type="text/javascript">
-    buttonClick = function(obj) {
-        localStorage.setItem("core",obj.id);
-        window.open("base.html", "_self");
-    }
-</script>
-
 </head>
 
 <body>
@@ -71,6 +54,13 @@ body {
 
     <h2 id="healthPlanText">Health insurance</h2>
     <h2 id="thingsPlanText">Insurance of things</h2>
+
+    <script type="text/javascript">
+        buttonClick = function(obj) {
+            localStorage.setItem("core",obj.id);
+            window.open("base.html", "_self");
+        }
+    </script>
 
 </body>
 
