@@ -7,11 +7,12 @@ function loadBaseTable(element, coreOption) {
         txt += "<td class=" + fieldClass + ">" + field + "</td>";
     };
 
-    var addButton = () => {
+    var addButton = (name, checked) => {
         txt += "<td>" + 
         "<label class='switch'>" + 
-            "<input type='checkbox'>" + 
-                "<span class='slider round'></span>" + 
+            "<input type='checkbox' name='" + name + "' onclick=switchCheckedChanged(this)";
+        txt += checked ? " checked>" : ">";
+        txt += "<span class='slider round'></span>" + 
         "</label></td>";
     };
 
@@ -25,10 +26,24 @@ function loadBaseTable(element, coreOption) {
         addField(item.name, "name");
         addField(item.desc, "desc");
         addField(item.cost, "cost");
-        addButton();
+
+        var optionChecked = localStorage.getItem(item.name);
+        if (optionChecked == null)
+            optionChecked = false;
+        if (optionChecked == "true")
+            optionChecked = true;
+        if (optionChecked == "false")
+            optionChecked = false;
+        
+        addButton(item.name, optionChecked); //TODO: name or id?
         txt += "</tr>";
     });
 
     txt += "</table>"
     document.getElementById(element).innerHTML = txt;
+}
+
+function switchCheckedChanged(element) {
+    console.debug(element.name, element.checked)
+    localStorage.setItem(element.name, element.checked);
 }

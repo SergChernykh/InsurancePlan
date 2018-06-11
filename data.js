@@ -3,17 +3,17 @@ var data = {
         "base": [
             {
                 "name": "base1",
-                "desc": "base desc fjslfj jsfl jslf jslf jslfj lsjf sljf lsjflsj jslf jsj sj flsjf lsjf sj ljs jslfj slj flsfj ",
+                "desc": "basesd desc fjslfj jsfl jslf jslf jslfj lsjf sljf lsjflsj jslf jsj sj flsjf lsjf sj ljs jslfj slj flsfj ",
                 "cost": 100
             },
             {
                 "name": "base2",
-                "desc": "base desc",
+                "desc": "basesd desc",
                 "cost": 100
             },
             {
                 "name": "base3",
-                "desc": "base desc",
+                "desc": "basesd desc",
                 "cost": 101
             }
         ],
@@ -22,8 +22,8 @@ var data = {
     "property": {
         "base": [
             {
-                "name": "base property 1",
-                "desc": "base decs",
+                "name": "basedf property 1",
+                "desc": "basedf decs",
                 "cost": 100
             },
             {
