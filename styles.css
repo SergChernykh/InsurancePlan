@@ -1,4 +1,30 @@
-table, th, td {
-    border: 1px solid black;
+h2 {
+    font-family: Arial;
+    border-style: none;
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(255, 204, 128);
+    font-size: 24pt;
+    text-align: center;
+}
+
+table.optTable {
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    width: 80%;
+}
+
+table.optTable th, td {
+    border: 1px solid #ececec;
+    text-align: center;
+    padding: 10px;
+    height: 50;
+    font-size: 15pt;
+    color: #343434;
+}
+
+table.optTable th {
+    background-color: #ececec;
+    font-size: 16pt;
 }

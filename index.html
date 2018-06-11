@@ -9,7 +9,6 @@
 
 <style>
 body {
-    /* background-color: #f8fffe; */
     width: 100%;
     height: 100%;
     margin: 0px;
@@ -40,30 +39,18 @@ body {
 
 #healthPlanText {
     position: absolute;
-    text-align: center;
-    font-family: Arial;
     left: 8.36%;
     width: 45.09%;
     height: 6.75%;
     top: 71.25%;
-    border-style: none;
-    font-style: italic;
-    font-weight: bold;
-    color: rgb(255, 204, 128);
-    font-size: 24pt;
 }
 
 #thingsPlanText {
     position: absolute;
-    text-align: center;
-    font-family: Arial;
     width: 40.09%;
     left: 49.45%;
     top: 71.25%;
-    font-style: italic;
-    color: rgb(255, 204, 128);
     height: 6.75%;
-    font-size: 24pt;
 }
 
 </style>
@@ -73,14 +60,6 @@ body {
         localStorage.setItem("core",obj.id);
         window.open("base.html", "_self");
     }
-//     document.onreadystatechange = function () {
-//         if (document.readyState === "complete") {
-//             var core = localStorage.getItem("core");
-//             if(core == "health" || core == "property" ) {
-//                 window.open("base.html", "_self");
-//             }
-//         }
-//     }
 </script>
 
 </head>

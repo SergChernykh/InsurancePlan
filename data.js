@@ -3,7 +3,7 @@ var data = {
         "base": [
             {
                 "name": "base1",
-                "desc": "base decs",
+                "desc": "base desc ",
                 "cost": 100
             },
             {

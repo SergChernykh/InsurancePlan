@@ -3,19 +3,28 @@ function loadBaseTable(element, coreOption) {
 
     var planOptions = data[coreOption];
 
-    var addField = (field) => {
-        txt += "<td>" + field + "</td>";
+    var addField = (field, fieldClass) => {
+        txt += "<td class=" + fieldClass + ">" + field + "</td>";
     };
 
     var addButton = () => {
-        txt += "<td>" + "<label class='switch'><input type='checkbox'><span class='slider round'></span></label>" + "</td>";
+        txt += "<td>" + 
+        "<label class='switch'>" + 
+            "<input type='checkbox'>" + 
+                "<span class='slider round'></span>" + 
+        "</label></td>";
     };
+
+    txt += "<tr><th>Name</th>" + 
+            "<th>Description</th>" + 
+            "<th>Cost</th>" + 
+            "<th>Enabled</th></tr>";
 
     planOptions.base.forEach(item => {
         txt += "<tr>";
-        addField(item.name);
-        addField(item.desc);
-        addField(item.cost);
+        addField(item.name, "name");
+        addField(item.desc, "desc");
+        addField(item.cost, "cost");
         addButton();
         txt += "</tr>";
     });
