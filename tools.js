@@ -96,8 +96,8 @@ function loadSummaryOptions(element) {
                     txt += "<li>" + name + "</li>";
             }
         }
-        document.getElementById(element).innerHTML = txt;
     }
+    document.getElementById(element).innerHTML = txt;
 }
 
 function loadTotalPrice(element) {
@@ -126,8 +126,8 @@ function loadTotalPrice(element) {
     calcForType("additional");
 
     var txt = "<ul class='summary'>";
-    txt += "<li class='header'>Total</li>";
-    txt += "<li>" + total + "</li>";
+    txt += "<li class='header' style='background-color:#58B957'>Total</li>";
+    txt += "<li>" + total + "$</li>";
 
     document.getElementById(element).innerHTML = txt;
 }

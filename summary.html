@@ -9,66 +9,24 @@
 <link rel="stylesheet" href="toggleswitch_style.css">
 
 <style>
-#home-btn {
+
+#container {
+    position: relative;
+    margin: auto;
+    width: 80%;
+    /* height: 100%; */
+}
+
+#finish-btn {
     background-color: #3D8BCD;
     position: absolute;
-    left: 0;
-}
-
-
-* {
-    box-sizing: border-box;
-}
-
-.columns {
-    float: left;
-    width: 33.3%;
-    padding: 8px;
-}
-
-.summary {
-    list-style-type: none;
-    border: 1px solid #eee;
-    margin: 0;
-    padding: 0;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-}
-
-.summary:hover {
-    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
-}
-
-.summary .header {
-    background-color: #111;
-    color: white;
-    font-size: 25px;
-}
-
-.summary li {
-    border-bottom: 1px solid #eee;
-    padding: 20px;
-    text-align: center;
-}
-
-.summary .grey {
-    background-color: #eee;
-    font-size: 20px;
-}
-
-.button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 25px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
+    left: 12%;
+    top: 55%;
 }
 
 </style>
 
-<script type="text/javascript">
+<script>
     document.onreadystatechange = function () {
         if (document.readyState === "complete") {
             loadSummaryPlan("plan");
@@ -88,30 +46,21 @@
         <div class="columns">
             <p id="plan"></p>
         </div>
-        
+    
         <div class="columns">
             <p id="options"></p>
         </div>
-        
+    
         <div class="columns">
             <p id="total"></p>
         </div>
-        
-        
-        <!-- <h2>Your plan</h2>
-        <p id="plan"></p>
     
-        <h2 id="optionsTitle">Your options</h2>
-        <p id="options"></p>
-    
-        <h2>Total</h2>
-        <p id="total"></p> -->
-    
-        <button class="round-button" id="home-btn" onclick="home()">Home</button>
     </div>
 
+    <button class="round-button" id="finish-btn" onclick="finish()">Finish</button>
+
     <script>
-        function home() {
+        function finish() {
             window.open("index.html", "_self");
         }
     </script>
