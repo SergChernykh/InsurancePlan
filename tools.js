@@ -18,7 +18,7 @@ function loadBaseTable(element, coreOption) {
 
     txt += "<tr><th>Name</th>" + 
             "<th>Description</th>" + 
-            "<th>Cost</th>" + 
+            "<th>Cost, $/month</th>" + 
             "<th>Enabled</th></tr>";
 
     planOptions.base.forEach(item => {
@@ -27,20 +27,45 @@ function loadBaseTable(element, coreOption) {
         addField(item.desc, "desc");
         addField(item.cost, "cost");
 
-        var optionChecked = localStorage.getItem(item.name);
-        if (optionChecked == null)
-            optionChecked = false;
-        if (optionChecked == "true")
-            optionChecked = true;
-        if (optionChecked == "false")
-            optionChecked = false;
-        
-        addButton(item.name, optionChecked); //TODO: name or id?
+        var optionChecked = checkState(localStorage.getItem(item.name));
+        addButton(item.name, optionChecked);
         txt += "</tr>";
     });
 
     txt += "</table>"
     document.getElementById(element).innerHTML = txt;
+}
+
+function loadAdditionalTable(element, coreOption) {
+    var txt = "<fieldset class='optField'>";
+
+    var planOptions = data[coreOption];
+
+    var addField = (field, fieldClass) => {
+        txt += "<td class=" + fieldClass + ">" + field + "</td>";
+    };
+
+    var addButton = (name, checked, description) => {
+        txt +=  "<div><label class='switch'>" + 
+                "<input type='checkbox' id='"+ name + "' name='" + name + "' onclick=switchCheckedChanged(this)";
+        txt += checked ? " checked>" : ">";
+        txt += "<span class='slider round'></span>" + 
+        "</label>";
+        txt += "<label class='switchLabel' for='" + name + "'>" + description + "</label></div>";
+    };
+
+    txt += "<legend>Choose additional options</legend>";
+    planOptions.additional.forEach(item => {
+        var optionChecked = checkState(localStorage.getItem(item.name));
+        addButton(item.name, optionChecked, item.desc)
+    });
+
+    txt += "</fieldset>"
+    document.getElementById(element).innerHTML = txt;
+}
+
+function checkState(option) {
+    return option == null || option == "false" ? false : true; 
 }
 
 function switchCheckedChanged(element) {

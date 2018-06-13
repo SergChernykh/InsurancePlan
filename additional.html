@@ -2,132 +2,65 @@
 <html>
 
 <head>
-<title>Additional options</title>
-
+<title>Insurance Plan</title>
+<script src="data.js"></script>
+<script src="tools.js"></script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="toggleswitch_style.css">
 
 <style>
-body {
-    /* background-color: #f8fffe; */
-    width: 100%;
-    height: 100%;
-    margin: 0px;
+#container {
+    position: relative;
+    margin: auto;
+    width: 60%;
 }
 
-.icon:active {
-    transform: scale(0.95);
-    transition: 100ms;
-}
-
-
-#healthIcon {
+#home-btn {
+    background-color: #3D8BCD;
     position: absolute;
-    left: 8.36%;
-    height: 50.0%;
-    width: 45.09%;
-    top: 20.5%;
+    left: 0;
 }
 
-#thingsIcon {
+#finish-btn {
+    background-color: #3D8BCD;
     position: absolute;
-    width: 40.09%;
-    height: 50.0%;
-    background-image: none;
-    background-color: transparent;
-    left: 49.45%;
-    top: 20.5%;    
-}
-
-#healthPlanText {
-    position: absolute;
-    text-align: center;
-    font-family: Arial;
-    left: 8.36%;
-    width: 45.09%;
-    height: 6.75%;
-    top: 71.25%;
-    border-style: none;
-    font-style: italic;
-    font-weight: bold;
-    color: rgb(255, 204, 128);
-    font-size: 24pt;
-}
-
-#thingsPlanText {
-    position: absolute;
-    text-align: center;
-    font-family: Arial;
-    width: 40.09%;
-    left: 49.45%;
-    top: 71.25%;
-    font-style: italic;
-    color: rgb(255, 204, 128);
-    height: 6.75%;
-    font-size: 24pt;
-}
-
-#button {
-    width: 6em;
-    border: 2px solid green;
-    background: #ffe;
-    border-radius: 5px;
-}
-a {
-    display: block;
-    width: 100%;
-    line-height: 2em;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-}
-a:hover {
-    color: red;
-    background: #eff;
+    right: 0;
 }
 
 </style>
 
-<script type="text/javascript">
-    document.onreadystatechange = function () {
-        if (document.readyState === "complete") {
+<script>
+    document.onreadystatechange = function() {
+        if (document.readyState == "complete") {
             var core = localStorage.getItem("core");
-            console.log("Selected core:", core);
+            loadAdditionalTable("options", core);
         }
-    }
-
-    function loadXMLDoc(path,callback) {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                callback(this);
-            }
-        };
-        xmlhttp.open("GET", path, true);
-        xmlhttp.send();
     }
 </script>
 
+</head>
+
 <body>
+    <div class="center">
+        <h2>Additional options</h2>
+    </div>
+
+    <div id="container">
+        <p id="options"></p>
     
-    <!-- <h2>Additions options</h2>
+        <button class="round-button" id="home-btn" onclick="home()">Home</button>
+        <button class="round-button" id="finish-btn" onclick="finish()">Finish</button>
+    </div>
+    
 
-    <ul>
-        <li>Option1</li>
-        <li>Option2</li>
-        <li>Option3</li>
-        <li>Option4</li>
-        <li>Option5</li>
-    </ul>
-
-    <button>Back</button>
-    <button>Next</button>
-
-    <h2>Summary</h2>
-
-
-    <button>Back</button>
-    <button>Finish</button> -->
+<script>
+    function home() {
+        window.open("index.html", "_self");
+    }
+    function finish() {
+        window.open("summary.html", "_self");
+    }
+</script>
 
 </body>
 

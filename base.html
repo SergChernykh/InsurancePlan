@@ -15,7 +15,7 @@
     width: 60%;
 }
 
-#back-btn {
+#home-btn {
     background-color: #3D8BCD;
     position: absolute;
     left: 0;
@@ -54,15 +54,15 @@
     <div id="container">
         <p id="options"></p>
     
-        <button class="round-button" id="back-btn" onclick="back()">Back</button>
+        <button class="round-button" id="home-btn" onclick="home()">Home</button>
         <button class="round-button" id="finish-btn" onclick="finish()">Finish</button>
         <button class="round-button" id="add-btn" onclick="addOptions()">Add options</button>
     </div>
     
 
 <script>
-    function back() {
-        window.history.back();
+    function home() {
+        window.open("index.html", "_self");
     }
     function finish() {
         window.open("summary.html", "_self");
