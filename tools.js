@@ -10,7 +10,7 @@ function loadBaseTable(element, coreOption) {
     var addButton = (name, checked) => {
         txt += "<td>" + 
         "<label class='switch'>" + 
-            "<input type='checkbox' name='" + name + "' onclick=switchCheckedChanged(this)";
+            "<input type='checkbox' name='" + name + "' onclick=switchCheckedChanged('base',this)";
         txt += checked ? " checked>" : ">";
         txt += "<span class='slider round'></span>" + 
         "</label></td>";
@@ -27,7 +27,7 @@ function loadBaseTable(element, coreOption) {
         addField(item.desc, "desc");
         addField(item.cost, "cost");
 
-        var optionChecked = checkState(localStorage.getItem(item.name));
+        var optionChecked = checkState("base", item.name);
         addButton(item.name, optionChecked);
         txt += "</tr>";
     });
@@ -47,7 +47,7 @@ function loadAdditionalTable(element, coreOption) {
 
     var addButton = (name, checked, description) => {
         txt +=  "<div><label class='switch'>" + 
-                "<input type='checkbox' id='"+ name + "' name='" + name + "' onclick=switchCheckedChanged(this)";
+                "<input type='checkbox' id='"+ name + "' name='" + name + "' onclick=switchCheckedChanged('additional',this)";
         txt += checked ? " checked>" : ">";
         txt += "<span class='slider round'></span>" + 
         "</label>";
@@ -56,7 +56,7 @@ function loadAdditionalTable(element, coreOption) {
 
     txt += "<legend>Choose additional options</legend>";
     planOptions.additional.forEach(item => {
-        var optionChecked = checkState(localStorage.getItem(item.name));
+        var optionChecked = checkState("additional", item.name);
         addButton(item.name, optionChecked, item.desc)
     });
 
@@ -64,11 +64,87 @@ function loadAdditionalTable(element, coreOption) {
     document.getElementById(element).innerHTML = txt;
 }
 
-function checkState(option) {
-    return option == null || option == "false" ? false : true; 
+function loadSummaryPlan(element) {
+    var core = localStorage.getItem("core");
+    var txt = "<ul class='summary'>";
+    txt += "<li class='header'>Your plan</li>";
+    txt += "<li class='grey' style='text-transform:capitalize'>" + core + "</li>";
+
+    var baseObj = JSON.parse(localStorage.getItem("base"));
+    if (baseObj != undefined) {
+        for (const name in baseObj) {
+            if (baseObj.hasOwnProperty(name)) {
+                const option = baseObj[name];
+                if (option)
+                    txt += "<li>" + name + "</li>";
+            }
+        }
+    }
+    document.getElementById(element).innerHTML = txt;
 }
 
-function switchCheckedChanged(element) {
+function loadSummaryOptions(element) {
+    var txt = "<ul class='summary'>";
+    txt += "<li class='header'>Your options</li>";
+
+    var addObj = JSON.parse(localStorage.getItem("additional"));
+    if (addObj != undefined && Object.keys(addObj).length > 0) {
+        for (const name in addObj) {
+            if (addObj.hasOwnProperty(name)) {
+                const option = addObj[name];
+                if (option)
+                    txt += "<li>" + name + "</li>";
+            }
+        }
+        document.getElementById(element).innerHTML = txt;
+    }
+}
+
+function loadTotalPrice(element) {
+    var core = localStorage.getItem("core");
+    var total = 0;
+    var coreData = data[core];
+
+    var calcForType = function(type) {
+        var typeObj = JSON.parse(localStorage.getItem(type));
+        for (const name in typeObj) {
+            if (typeObj.hasOwnProperty(name)) {
+                const option = typeObj[name];
+                if (option)
+                {
+                    var optionObj = coreData[type].filter(function(item) {
+                        return item.name == name;
+                    })[0];
+                    total += optionObj.cost;
+                }
+                    
+            }
+        }
+    };
+
+    calcForType("base");
+    calcForType("additional");
+
+    var txt = "<ul class='summary'>";
+    txt += "<li class='header'>Total</li>";
+    txt += "<li>" + total + "</li>";
+
+    document.getElementById(element).innerHTML = txt;
+}
+
+function checkState(type, name) {
+    var obj = JSON.parse(localStorage.getItem(type));
+    if (obj == undefined)
+        return false;
+    var option = obj[name];
+    return option == null ? false : option; 
+}
+
+function switchCheckedChanged(type, element) {
     console.debug(element.name, element.checked)
-    localStorage.setItem(element.name, element.checked);
+    var obj = JSON.parse(localStorage.getItem(type));
+    if (obj == undefined)
+        obj = {};
+    obj[element.name] = element.checked;
+    localStorage.setItem(type, JSON.stringify(obj));
 }

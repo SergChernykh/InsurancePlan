@@ -3,87 +3,67 @@
 
 <head>
 <title>Summary</title>
-
+<script src="data.js"></script>
+<script src="tools.js"></script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="toggleswitch_style.css">
 
 <style>
-body {
-    /* background-color: #f8fffe; */
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-}
-
-.icon:active {
-    transform: scale(0.95);
-    transition: 100ms;
-}
-
-
-#healthIcon {
+#home-btn {
+    background-color: #3D8BCD;
     position: absolute;
-    left: 8.36%;
-    height: 50.0%;
-    width: 45.09%;
-    top: 20.5%;
+    left: 0;
 }
 
-#thingsIcon {
-    position: absolute;
-    width: 40.09%;
-    height: 50.0%;
-    background-image: none;
-    background-color: transparent;
-    left: 49.45%;
-    top: 20.5%;    
+
+* {
+    box-sizing: border-box;
 }
 
-#healthPlanText {
-    position: absolute;
+.columns {
+    float: left;
+    width: 33.3%;
+    padding: 8px;
+}
+
+.summary {
+    list-style-type: none;
+    border: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.summary:hover {
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+}
+
+.summary .header {
+    background-color: #111;
+    color: white;
+    font-size: 25px;
+}
+
+.summary li {
+    border-bottom: 1px solid #eee;
+    padding: 20px;
     text-align: center;
-    font-family: Arial;
-    left: 8.36%;
-    width: 45.09%;
-    height: 6.75%;
-    top: 71.25%;
-    border-style: none;
-    font-style: italic;
-    font-weight: bold;
-    color: rgb(255, 204, 128);
-    font-size: 24pt;
 }
 
-#thingsPlanText {
-    position: absolute;
-    text-align: center;
-    font-family: Arial;
-    width: 40.09%;
-    left: 49.45%;
-    top: 71.25%;
-    font-style: italic;
-    color: rgb(255, 204, 128);
-    height: 6.75%;
-    font-size: 24pt;
+.summary .grey {
+    background-color: #eee;
+    font-size: 20px;
 }
 
-#button {
-    width: 6em;
-    border: 2px solid green;
-    background: #ffe;
-    border-radius: 5px;
-}
-a {
-    display: block;
-    width: 100%;
-    line-height: 2em;
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 25px;
     text-align: center;
     text-decoration: none;
-    border-radius: 5px;
-}
-a:hover {
-    color: red;
-    background: #eff;
+    font-size: 18px;
 }
 
 </style>
@@ -91,43 +71,50 @@ a:hover {
 <script type="text/javascript">
     document.onreadystatechange = function () {
         if (document.readyState === "complete") {
-            var core = localStorage.getItem("core");
-            console.log("Selected core:", core);
+            loadSummaryPlan("plan");
+            loadSummaryOptions("options");
+            loadTotalPrice("total");
         }
-    }
-
-    function loadXMLDoc(path,callback) {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                callback(this);
-            }
-        };
-        xmlhttp.open("GET", path, true);
-        xmlhttp.send();
     }
 </script>
 
 <body>
+    <div class="center">
+        <h2>Summary</h2>
+    </div>
+
+    <div id="container">
     
-    <!-- <h2>Additions options</h2>
+        <div class="columns">
+            <p id="plan"></p>
+        </div>
+        
+        <div class="columns">
+            <p id="options"></p>
+        </div>
+        
+        <div class="columns">
+            <p id="total"></p>
+        </div>
+        
+        
+        <!-- <h2>Your plan</h2>
+        <p id="plan"></p>
+    
+        <h2 id="optionsTitle">Your options</h2>
+        <p id="options"></p>
+    
+        <h2>Total</h2>
+        <p id="total"></p> -->
+    
+        <button class="round-button" id="home-btn" onclick="home()">Home</button>
+    </div>
 
-    <ul>
-        <li>Option1</li>
-        <li>Option2</li>
-        <li>Option3</li>
-        <li>Option4</li>
-        <li>Option5</li>
-    </ul>
-
-    <button>Back</button>
-    <button>Next</button>
-
-    <h2>Summary</h2>
-
-
-    <button>Back</button>
-    <button>Finish</button> -->
+    <script>
+        function home() {
+            window.open("index.html", "_self");
+        }
+    </script>
 
 </body>
 
