@@ -19,20 +19,21 @@ var data = {
         ],
         "additional": [
             {
-                "name": "b1",
-                "desc": "basedf decs",
-                "cost": 50
+                "name": "Death",
+                "cost": 1500
             },
             {
-                "name": "b2",
-                "desc": "basedf decs",
-                "cost": 50
+                "name": "Cancer",
+                "cost": 2200
             },
             {
-                "name": "b3",
-                "desc": "basedf decs",
-                "cost": 50
+                "name": "Disablement",
+                "cost": 900
             },
+            {
+                "name": "Crime",
+                "cost": 300
+            }
         ]
     },
     "property": {
@@ -55,20 +56,29 @@ var data = {
         ],
         "additional": [
             {
-                "name": "a1",
-                "desc": "basedf decs",
-                "cost": 50
+                "name": "Fire",
+                "cost": 37
             },
             {
-                "name": "a2",
-                "desc": "basedf decs",
-                "cost": 50
+                "name": "Aircraft damage",
+                "cost": 58
             },
             {
-                "name": "a3",
-                "desc": "basedf decs",
-                "cost": 50
+                "name": "Lightning",
+                "cost": 10
             },
+            {
+                "name": "Storm, cyclone, flood",
+                "cost": 10
+            },
+            {
+                "name": "Riot, strike",
+                "cost": 10
+            },
+            {
+                "name": "Theft",
+                "cost": 39.99
+            }
         ]
     }
 }

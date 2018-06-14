@@ -57,7 +57,7 @@ function loadAdditionalTable(element, coreOption) {
     txt += "<legend>Choose additional options</legend>";
     planOptions.additional.forEach(item => {
         var optionChecked = checkState("additional", item.name);
-        addButton(item.name, optionChecked, item.desc)
+        addButton(item.name, optionChecked, item.name)
     });
 
     txt += "</fieldset>"
