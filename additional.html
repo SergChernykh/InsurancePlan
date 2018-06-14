@@ -2,41 +2,156 @@
 <html>
 
 <head>
-<title>Insurance Plan</title>
-<script src="data.js"></script>
-<script src="tools.js"></script>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="toggleswitch_style.css">
+    <title>Insurance Plan</title>
+    <script src="data.js"></script>
+    <script src="tools.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="toggleswitch_style.css">
 
-<style>
-#container {
-    position: relative;
-    margin: auto;
-    width: 60%;
-}
-
-#home-btn {
-    background-color: #3D8BCD;
-    position: absolute;
-    left: 0;
-}
-
-#finish-btn {
-    background-color: #3D8BCD;
-    position: absolute;
-    right: 0;
-}
-
-</style>
-
-<script>
-    document.onreadystatechange = function() {
-        if (document.readyState == "complete") {
-            var core = localStorage.getItem("core");
-            loadAdditionalTable("options", core);
+    <style>
+        #container {
+            position: relative;
+            margin: auto;
+            width: 60%;
         }
-    }
-</script>
+
+        #home-btn {
+            background-color: #3D8BCD;
+            position: absolute;
+            left: 20%;
+            bottom: 35%;
+        }
+
+        #finish-btn {
+            background-color: #3D8BCD;
+            position: absolute;
+            right: 20%;
+            bottom: 35%;
+        }
+    </style>
+
+    <script>
+
+        var dragSrcEl = null;
+
+        function handleDragStart(e) {
+            e.target.classList.add('start-drag');  // this / e.target is the source node.
+            dragSrcEl = e.target;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData("text/html", e.target.innerHTML);
+        }
+
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault(); // Necessary. Allows us to drop.
+            }
+
+            e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+
+            return false;
+        }
+
+        function handleDragEnter(e) {
+            // this / e.target is the current hover target.
+            e.target.classList.add('over');
+        }
+
+        function handleDragLeave(e) {
+            e.target.classList.remove('over');  // this / e.target is previous target element.
+        }
+
+        function handleDrop(e) {
+            // this / e.target is current target element.
+
+            if (e.stopPropagation) {
+                e.stopPropagation(); // stops the browser from redirecting.
+            }
+
+            var targetListName = e.target.parentElement.id;
+
+            console.debug(dragSrcEl);
+
+            var targetName = dragSrcEl.attributes.name.nodeValue;
+
+            console.debug(targetName);
+
+            if (dragSrcEl != e.target) {
+                dragSrcEl.innerHTML = e.target.innerHTML;
+                e.target.innerHTML = e.dataTransfer.getData('text/html');
+
+                e.target.draggable = e.target.innerHTML != "";
+                e.target.name = targetName;
+                e.target.setAttribute("name", targetName);
+                dragSrcEl.draggable = dragSrcEl.innerHTML != "";
+            }            
+            
+
+            var checked = targetListName == "selected";
+
+            console.debug(e.target.name, checked)
+            var obj = JSON.parse(localStorage.getItem("additional"));
+            if (obj == undefined)
+                obj = {};
+            obj[e.target.name] = checked;
+            localStorage.setItem("additional", JSON.stringify(obj));
+
+            // See the section on the DataTransfer object.
+
+            return false;
+        }
+
+        function handleDragEnd(e) {
+            // this/e.target is the source node.
+            var fields = document.querySelectorAll(".drag");
+            [].forEach.call(fields, function (field) {
+                field.classList.remove('over');
+                field.classList.remove('start-drag');
+            });
+
+            // sortLists();
+        }
+
+        // function sortLists() {
+        //     var availableList = document.querySelector("#available.summary");
+        //     console.debug(availableList);
+        //     var availableFields = document.querySelectorAll("#available.summary li.drag");
+        //     console.debug(availableFields);
+
+        //     var availableOrdered = [].slice.call(availableFields).sort((a, b) => {
+        //         if (a.textContent == "" || b.textContent == "")
+        //             return -1;
+        //         return 1;
+        //         // console.debug(a.textContent, b.textContent);
+        //         // return a.textContent > b.textContent  ? 1 : -1;
+        //     });
+
+        //     console.debug(availableOrdered);
+
+        //     availableOrdered.forEach(item => {
+        //         availableList.appendChild(item);
+        //     });
+
+        // }
+
+        document.onreadystatechange = function () {
+            if (document.readyState == "complete") {
+                var core = localStorage.getItem("core");
+                loadAdditionalTable("options", "selected", core);
+
+                var fields = document.querySelectorAll(".drag");
+                console.debug(fields);
+                [].forEach.call(fields, function (field) {
+                    field.addEventListener('dragstart', handleDragStart, false);
+                    field.addEventListener('dragenter', handleDragEnter, false);
+                    field.addEventListener('dragover', handleDragOver, false);
+                    field.addEventListener('dragleave', handleDragLeave, false);
+                    field.addEventListener('drop', handleDrop, false);
+                    field.addEventListener('dragend', handleDragEnd, false);
+                });
+            }
+        }
+
+    </script>
 
 </head>
 
@@ -46,21 +161,28 @@
     </div>
 
     <div id="container">
-        <p id="options"></p>
-    
-        <button class="round-button" id="home-btn" onclick="home()">Home</button>
-        <button class="round-button" id="finish-btn" onclick="finish()">Finish</button>
-    </div>
-    
 
-<script>
-    function home() {
-        window.open("index.html", "_self");
-    }
-    function finish() {
-        window.open("summary.html", "_self");
-    }
-</script>
+        <div class="columns" style="width: 50%">
+            <p id="options"></p>
+        </div>
+
+        <div class="columns" style="width: 50%">
+            <p id="selected"></p>
+        </div>
+
+    </div>
+
+    <button class="round-button" id="home-btn" onclick="home()">Home</button>
+    <button class="round-button" id="finish-btn" onclick="finish()">Finish</button>
+
+    <script>
+        function home() {
+            window.open("index.html", "_self");
+        }
+        function finish() {
+            window.open("summary.html", "_self");
+        }
+    </script>
 
 </body>
 

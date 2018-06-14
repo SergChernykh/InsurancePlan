@@ -36,32 +36,73 @@ function loadBaseTable(element, coreOption) {
     document.getElementById(element).innerHTML = txt;
 }
 
-function loadAdditionalTable(element, coreOption) {
-    var txt = "<fieldset class='optField'>";
+function loadAdditionalTable(available, selected, coreOption) {
+    var txt = "<ul class='summary' id='available'>";
 
-    var planOptions = data[coreOption];
+    var selectedTxt = "<ul class='summary' id='selected'>";
 
-    var addField = (field, fieldClass) => {
-        txt += "<td class=" + fieldClass + ">" + field + "</td>";
-    };
+    txt += "<li class='header'>Available options</li>";
 
-    var addButton = (name, checked, description) => {
-        txt +=  "<div><label class='switch'>" + 
-                "<input type='checkbox' id='"+ name + "' name='" + name + "' onclick=switchCheckedChanged('additional',this)";
-        txt += checked ? " checked>" : ">";
-        txt += "<span class='slider round'></span>" + 
-        "</label>";
-        txt += "<label class='switchLabel' for='" + name + "'>" + description + "</label></div>";
-    };
+    selectedTxt += "<li class='header'>Selected options</li>";
 
-    txt += "<legend>Choose additional options</legend>";
-    planOptions.additional.forEach(item => {
-        var optionChecked = checkState("additional", item.name);
-        addButton(item.name, optionChecked, item.name)
+    var dataOptions = data[coreOption].additional;
+
+    var selectedOptions = JSON.parse(localStorage.getItem("additional"));
+
+    console.debug(dataOptions);
+    console.debug(selectedOptions);
+
+    dataOptions.forEach(item => {
+        var name = item.name;
+        if (selectedOptions != undefined && name in selectedOptions) {
+            if (selectedOptions[name]) {
+                selectedTxt += "<li class='drag' draggable='true' name='" + name + "'>" + name + "</li>";
+                txt += "<li class='drag'></li>";
+            }
+            else {
+                selectedTxt += "<li class='drag'></li>";
+                txt +=  "<li class='drag' draggable='true' name='" + name + "'>" + name + "</li>";  
+            }
+                
+        }
+        else {
+            selectedTxt += "<li class='drag'></li>";
+            txt += "<li class='drag' draggable='true' name='" + name + "'>" + name + "</li>";
+        }
     });
+    txt += "</ul>";
+    selectedTxt += "</ul>";
 
-    txt += "</fieldset>"
-    document.getElementById(element).innerHTML = txt;
+    document.getElementById(available).innerHTML = txt;
+    document.getElementById(selected).innerHTML = selectedTxt;
+
+
+
+    // var txt = "<fieldset class='optField'>";
+
+    // var planOptions = data[coreOption];
+
+    // var addField = (field, fieldClass) => {
+    //     txt += "<td class=" + fieldClass + ">" + field + "</td>";
+    // };
+
+    // var addButton = (name, checked, description) => {
+    //     txt +=  "<div><label class='switch'>" + 
+    //             "<input type='checkbox' id='"+ name + "' name='" + name + "' onclick=switchCheckedChanged('additional',this)";
+    //     txt += checked ? " checked>" : ">";
+    //     txt += "<span class='slider round'></span>" + 
+    //     "</label>";
+    //     txt += "<label class='switchLabel' for='" + name + "'>" + description + "</label></div>";
+    // };
+
+    // txt += "<legend>Choose additional options</legend>";
+    // planOptions.additional.forEach(item => {
+    //     var optionChecked = checkState("additional", item.name);
+    //     addButton(item.name, optionChecked, item.name)
+    // });
+
+    // txt += "</fieldset>"
+    // document.getElementById(element).innerHTML = txt;
 }
 
 function loadSummaryPlan(element) {
